@@ -5,15 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private EditText input;
+    private EditText iterCount;
     private EditText endResult;
     private Button button;
-
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void onButtonClick(View v) {
+        iterCount = findViewById(R.id.iterCount);
         endResult = findViewById(R.id.endResult);
         input = findViewById(R.id.number);
         button = findViewById(R.id.button);
 
         String result = factorize();
+        String iterations = calculateIterations();
         endResult.setText(result);
+        iterCount.setText(iterations);
 
     }
     public String factorize() {
@@ -60,9 +63,17 @@ public class MainActivity extends AppCompatActivity {
                 break;
             else
                 square_root += 1;
+            count ++;
         }
         result += " " + (square_root - b) + "," + (square_root + b) + " ";
         return result;
+
     }
+    public String calculateIterations(){
+        String iterations = "";
+        iterations = "" + count;
+        return iterations;
+    }
+
 }
 
